@@ -14,7 +14,7 @@
 <img src="5x1000adds1000removes.png">
 
 this was achieved by trading a small amount of memory and convenience for performance
-instead of shifting items around everytime you add or remove something the FixedList will keep track of empty spots in the array and automatically fill them in without looping over the whole list everytime
+instead of shifting items around everytime you add or remove something the FixedList will keep track of empty spots in the array and automatically fill them in without looping over the whole list everytime, initial creation of a FixedList<> may be slower than List<> too.
 
 
 ## Implemented methods (most of these are self explanatory)
