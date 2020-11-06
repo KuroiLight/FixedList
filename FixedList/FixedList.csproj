@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>KuroiLight (2019)</Copyright>
+    <Description>A high performance List implementation. Features faster Add/Remove than regular List for large amount of objects</Description>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/KuroiLight/FixedList</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KuroiLight/FixedList</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>KuroiLight</Authors>
   </PropertyGroup>
 
 </Project>

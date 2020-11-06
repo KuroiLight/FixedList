@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FixedList
 {
@@ -126,12 +127,7 @@ namespace FixedList
         /// <returns></returns>
         public bool Contains(T item)
         {
-            for (var i = 0; i < Capacity; i++) {
-                if (!_setValues[i] && !_data[i].Equals(item)) continue;
-                return true;
-            }
-
-            return false;
+            return _data.AsEnumerable().Contains(item);
         }
 
         /// <summary>
@@ -139,7 +135,7 @@ namespace FixedList
         /// </summary>
         /// <param name="array">array to copy to</param>
         /// <param name="arrayIndex">starting index of array</param>
-        public void CopyTo(T[] array, int arrayIndex)
+        public void CopyTo(ref T[] array, int arrayIndex)
         {
             for (var i = 0; i <= Capacity; i++) {
                 if (!_setValues[i]) continue;
