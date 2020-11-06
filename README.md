@@ -13,6 +13,16 @@
 
 <img src="5x1000adds1000removes.png">
 
+and some tests with LinkedList comparision
+
+##### Adding 1000 then Removing 1000 items, 10 times, with linkedlist
+
+<img src="AddRemovex1000withLL.png">
+
+##### Contains (string "500" in 1000 strings), 10 times, with linkedlist
+
+<img src="LL_L_FL_containsx10.png">
+
 this was achieved by trading a small amount of memory and convenience for performance
 instead of shifting items around everytime you add or remove something the FixedList will keep track of empty spots in the array and automatically fill them in without looping over the whole list everytime, initial creation of a FixedList<> may be slower than List<> too.
 
