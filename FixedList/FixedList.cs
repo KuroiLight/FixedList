@@ -32,6 +32,10 @@ namespace FixedList
             }
         }
 
+        /// <summary>
+        /// Add a new item
+        /// </summary>
+        /// <param name="value">item to add</param>
         public void Add(T value)
         {
             var availableIndex = _availableSlots.Pop();
@@ -40,6 +44,10 @@ namespace FixedList
             Count++;
         }
 
+        /// <summary>
+        /// Removes an item at index
+        /// </summary>
+        /// <param name="index">index to look for</param>
         public void RemoveAt(int index)
         {
             if (_setValues[index]) {
@@ -53,6 +61,11 @@ namespace FixedList
             }
         }
 
+        /// <summary>
+        /// removes an item
+        /// </summary>
+        /// <param name="value">item to look for</param>
+        /// <returns></returns>
         public bool Remove(T value)
         {
             for (var i = 0; i < Capacity; i++) {
@@ -64,6 +77,11 @@ namespace FixedList
             return false;
         }
 
+        /// <summary>
+        /// Remove all items matching predicate function
+        /// </summary>
+        /// <param name="predicate">function returning true if match is found</param>
+        /// <returns></returns>
         public int RemoveAll(Func<T, bool> predicate)
         {
             var removed = 0;
@@ -76,6 +94,11 @@ namespace FixedList
             return removed;
         }
 
+        /// <summary>
+        /// returns the index of the matching item
+        /// </summary>
+        /// <param name="item">item to look for</param>
+        /// <returns></returns>
         public int IndexOf(T item)
         {
             for (var i = 0; i < Capacity; i++) {
@@ -85,6 +108,9 @@ namespace FixedList
             return -1;
         }
 
+        /// <summary>
+        /// Clears the list
+        /// </summary>
         public void Clear()
         {
             for (var i = 0; i < Capacity; i++) {
@@ -93,6 +119,11 @@ namespace FixedList
             }
         }
 
+        /// <summary>
+        /// check if item exists
+        /// </summary>
+        /// <param name="item">item to look for</param>
+        /// <returns></returns>
         public bool Contains(T item)
         {
             for (var i = 0; i < Capacity; i++) {
@@ -103,6 +134,11 @@ namespace FixedList
             return false;
         }
 
+        /// <summary>
+        /// copy the non-null contents of the FixedList to a array<T>
+        /// </summary>
+        /// <param name="array">array to copy to</param>
+        /// <param name="arrayIndex">starting index of array</param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             for (var i = 0; i <= Capacity; i++) {
@@ -112,20 +148,10 @@ namespace FixedList
             }
         }
 
-        public FixedList<T> Compacted(bool resize = false)
-        {
-            var newCapacity = (resize ? Count - 1 : Capacity);
-            var newFixedList = new FixedList<T>(newCapacity);
-
-            for (var i = 0; i < Capacity; i++) {
-                if (_setValues[i]) {
-                    newFixedList.Add(_data[i]);
-                }
-            }
-
-            return newFixedList;
-        }
-
+        /// <summary>
+        /// perform an action on all elements of the FixedList
+        /// </summary>
+        /// <param name="action"></param>
         public void ForEach(Action<T> action)
         {
             for (var i = 0; i < Capacity; i++) {
@@ -135,6 +161,11 @@ namespace FixedList
             }
         }
 
+        /// <summary>
+        /// Find an item matching the predicate function
+        /// </summary>
+        /// <param name="predicate">function returning true if match is found</param>
+        /// <returns></returns>
         public T Find(Func<T, bool> predicate)
         {
             for (var i = 0; i < Capacity; i++) {
@@ -144,6 +175,24 @@ namespace FixedList
             }
 
             return default;
+        }
+
+        /// <summary>
+        /// Create a FixedList of a new capacity keeping as many items as can fit in the new collection, this will also shift all items to the beginning of the new FixedList.
+        /// </summary>
+        /// <param name="newCapacity">the new capacity, use the FixedLists old capacity to just shift contents left in the new FixedList</param>
+        /// <returns></returns>
+        public FixedList<T> Resize(int newCapacity)
+        {
+            var newFixedList = new FixedList<T>(newCapacity);
+
+            for (var i = 0; i < Capacity; i++) {
+                if (_setValues[i]) {
+                    newFixedList.Add(_data[i]);
+                }
+            }
+
+            return newFixedList;
         }
     }
 }
